@@ -1,4 +1,5 @@
 import './style.css';
+import { removeDomByList } from './utils';
 
 (() => {
   console.log('nothing to do', location.host)
@@ -30,17 +31,10 @@ import './style.css';
       return count
     }
     count = removeComment()
-
-    document.querySelector('.nav2-ul')?.remove()
-    document.querySelector('.article-list.top')?.remove()
-    document.querySelector('.pop-hongbao-on')?.remove()
-    document.querySelector('.tishi')?.remove()
+    const strList = ['.nav2-ul','.article-list.top','.pop-hongbao-on','.tishi','.xiangguan','aside','#commentbox','footer']
+    removeDomByList(strList)
     document.querySelector('.copyright')?.parentElement?.remove()
-    document.querySelector('.xiangguan')?.remove()
-    document.querySelector('aside')?.remove()
-    document.querySelector('#commentbox')?.remove()
-    document.querySelector('footer')?.remove()
-
+    
   } else {
     const contentDiv = document.getElementById('content');
     const articleDiv = document.querySelector('.article');
@@ -51,18 +45,8 @@ import './style.css';
       contentDiv.appendChild(articleDiv);
     }
 
-    const removeAside = () => {
-      document.querySelector('.grid-16-8')?.remove()
-      document.querySelector('.sns-bar')?.remove()
-      document.querySelector('#db-nav-group')?.remove()
-      document.querySelector('#db-global-nav')?.remove()
-      document.querySelector('.comment-form')?.remove()
-      document.querySelector('#footer')?.remove()
-      document.querySelector('#landing-bar')?.remove()
-      document.querySelector('.txd')?.remove()
-    }
-    removeAside()
-
+    const strList = ['.grid-16-8','.sns-bar','#db-nav-group','#db-global-nav','.comment-form','#footer','#landing-bar','.txd']
+    removeDomByList(strList)
 
     const a = document.querySelector('.topic-content') as HTMLElement
     if (a) {
