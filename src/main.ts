@@ -2,6 +2,14 @@ import './style.css';
 
 (() => {
   console.log('nothing to do', location.host)
+  // 脚本执行实际在页面后，因此loading没有意义，脚本执行的多快取决于原页面加载，如果原页面加载久就会看到原页面久，然后闪到新样式
+  const app = document.createElement('div');
+
+  app.innerHTML = `<div class="fixed top-0 left-0 right-0 bottom-0 bg-black text-white">
+  <div class="animate-bounce duration-1000 my-10 text-center">loading...</div>
+</div>`
+  document.body.append(app);
+
   let count = 0
   const filterText = /(d{2,})|谢谢姐妹|滴滴|谢谢|!|！|\s|(^[a-zA-Z]+$)|(^\d+$)/gi // 过滤2个以上的d和谢谢
 
@@ -98,10 +106,5 @@ import './style.css';
 
 
   const msg = `✨ 已移除无效评论${count}条`
-  const app = document.createElement('div');
-  app.innerHTML = `
-<div class="web-plugin-float">
-    <p>${msg}</p>
-  </div>`
-  document.body.append(app);
+  app.innerHTML = `<button class="fixed bottom-2 right-2 btn btn-primary">${msg}</button>`
 })()

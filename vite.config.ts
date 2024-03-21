@@ -10,7 +10,7 @@ export default defineConfig({
         icon: 'https://vitejs.dev/logo.svg',
         namespace: 'npm/vite-plugin-monkey',
         match: ['http://new.xianbao.fun/douban-maizu/*','http://new.xianbao.fun/category-douban-maizu/*','https://www.douban.com/*'],
-        'run-at': 'document-end'
+        'run-at': 'document-body'
       },
     }),
   ],
