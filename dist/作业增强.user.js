@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         作业增强
 // @namespace    npm/vite-plugin-monkey
-// @version      0.0.1
+// @version      0.0.2
 // @author       monkey
 // @description  精简页面元素，移除无效评论，PC端页面适配移动端
 // @icon         https://vitejs.dev/logo.svg
@@ -110,15 +110,17 @@
     return count;
   };
   const xianbaoRun = () => {
-    var _a, _b;
+    var _a, _b, _c;
     const strList = [".nav2-ul", ".article-list.top", ".pop-hongbao-on", ".tishi", ".xiangguan", "aside", "#commentbox", ".footer"];
     removeDomByList(strList);
     (_b = (_a = document.querySelector(".copyright")) == null ? void 0 : _a.parentElement) == null ? void 0 : _b.remove();
+    (_c = document.querySelector(".art-copyright a")) == null ? void 0 : _c.setAttribute("target", "_self");
     let count = 0;
     const zoyeList = document.querySelectorAll(".article-list .title a");
     if (zoyeList.length) {
       zoyeList.forEach((item) => {
         var _a2;
+        item.setAttribute("target", "_self");
         const dom = item;
         const isNoNeed = NOT_NEED_LIST.some((noNeed) => dom.innerText.includes(noNeed));
         if (isNoNeed) {

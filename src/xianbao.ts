@@ -23,10 +23,13 @@ export const xianbaoRun = (): number => {
   removeDomByList(strList)
   document.querySelector('.copyright')?.parentElement?.remove()
 
+  document.querySelector('.art-copyright a')?.setAttribute('target', '_self');
+
   let count = 0
   const zoyeList = document.querySelectorAll('.article-list .title a')
   if (zoyeList.length) {
     zoyeList.forEach((item) => {
+      item.setAttribute('target', '_self')
       const dom = item as HTMLElement
       const isNoNeed = NOT_NEED_LIST.some((noNeed) => dom.innerText.includes(noNeed))
       if (isNoNeed) {
