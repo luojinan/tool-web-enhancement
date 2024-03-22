@@ -7,5 +7,8 @@ export default {
     extend: {},
   },
   plugins: [require("daisyui")],
+  daisyui: {
+    themeRoot: "#tool-web-enhancement"
+  }
 }
 

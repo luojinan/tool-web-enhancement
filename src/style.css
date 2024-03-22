@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  box-sizing: border-box;
+}
 
 .article-list .title a{
   text-decoration: none;
@@ -10,4 +13,7 @@
 
 .topic-reply li .reply-doc p {
   margin: 0;
+}
+.reply-quote {
+  width: unset;
 }

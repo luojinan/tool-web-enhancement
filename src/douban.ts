@@ -20,6 +20,7 @@ const fixPhone = () => {
   if (body) {
     body.style.boxSizing = 'border-box'
     body.style.width = '100vw'
+    body.style.padding = '10px 10px 0 10px'
   }
 
   const a = document.querySelector('.topic-content') as HTMLElement
@@ -30,11 +31,11 @@ const fixPhone = () => {
 
   const wrapper = document.getElementById('wrapper')
   if (wrapper) {
-    wrapper.style.width = '100vw'
+    wrapper.style.width = '100%'
   }
   const doc = document.querySelector('.topic-doc') as HTMLElement
   if (doc) {
-    doc.style.width = '100vw'
+    doc.style.width = '100%'
     doc.style.padding = '10px'
     doc.style.boxSizing = 'border-box'
   }
