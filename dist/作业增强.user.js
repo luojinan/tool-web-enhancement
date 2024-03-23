@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         作业增强
 // @namespace    npm/vite-plugin-monkey
-// @version      0.0.3
+// @version      0.0.4
 // @author       monkey
 // @description  精简页面元素，移除无效评论，PC端页面适配移动端
 // @icon         https://vitejs.dev/logo.svg
