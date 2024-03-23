@@ -8,7 +8,8 @@ export default {
   },
   plugins: [require("daisyui")],
   daisyui: {
-    themeRoot: "#tool-web-enhancement"
+    // base: false,
+    prefix: 'twe-'
   }
 }
 
