@@ -5,6 +5,6 @@
 export function removeDomByList(list: string[]) {
   // 遍历提供的选择器列表，并尝试移除每个匹配的元素
   list.forEach((item) => {
-    document.querySelector(item)?.remove();
+    document.querySelectorAll(item)?.forEach(item=>item.remove())
   });
 };

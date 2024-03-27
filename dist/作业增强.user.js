@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         作业增强
 // @namespace    npm/vite-plugin-monkey
-// @version      0.0.4
+// @version      0.0.5
 // @author       monkey
 // @description  精简页面元素，移除无效评论，PC端页面适配移动端
 // @icon         https://vitejs.dev/logo.svg
@@ -38,7 +38,7 @@
   function removeDomByList(list) {
     list.forEach((item) => {
       var _a;
-      (_a = document.querySelector(item)) == null ? void 0 : _a.remove();
+      (_a = document.querySelectorAll(item)) == null ? void 0 : _a.forEach((item2) => item2.remove());
     });
   }
   const removeAd = () => {
@@ -115,6 +115,9 @@
     var _a, _b, _c;
     const strList = [".nav2-ul", ".article-list.top", ".pop-hongbao-on", ".tishi", ".xiangguan", "aside", "#commentbox", ".footer"];
     removeDomByList(strList);
+    setTimeout(() => {
+      removeDomByList(strList);
+    }, 1e3);
     (_b = (_a = document.querySelector(".copyright")) == null ? void 0 : _a.parentElement) == null ? void 0 : _b.remove();
     (_c = document.querySelector(".art-copyright a")) == null ? void 0 : _c.setAttribute("target", "_self");
     let count = 0;

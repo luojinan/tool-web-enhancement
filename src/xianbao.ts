@@ -21,6 +21,10 @@ const removeComment = () => {
 export const xianbaoRun = (): number => {
   const strList = ['.nav2-ul', '.article-list.top', '.pop-hongbao-on', '.tishi', '.xiangguan', 'aside', '#commentbox', '.footer']
   removeDomByList(strList)
+  // 移除元素 如fl链接是异步生成的，此时可能没有移除成功，1s后尝试二次移除
+  setTimeout(() => {
+    removeDomByList(strList)
+  }, 1000);
   document.querySelector('.copyright')?.parentElement?.remove()
 
   document.querySelector('.art-copyright a')?.setAttribute('target', '_self');
