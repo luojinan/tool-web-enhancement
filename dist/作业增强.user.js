@@ -191,6 +191,7 @@
     }
     const msg = `✨ 已移除无效评论${count}条`;
     app.innerHTML = `<button class="fixed bottom-8 right-2 btn btn-primary">${msg}</button>`;
+    document.body.append(app);
   })();
 
 })();
