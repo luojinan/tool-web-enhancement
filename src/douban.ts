@@ -47,7 +47,7 @@ const removeComment = () => {
   document.querySelectorAll('.reply-content').forEach((item) => {
     const dom = item as HTMLElement
     const content = dom.innerText.replace(filterCommentText, '')
-    if (!content || ['d', 'D', '牛', '，'].includes(content)) {
+    if (!content || ['d', 'D', '牛', '，', ','].includes(content)) {
       count++
       dom.parentElement?.parentElement?.remove()
     }
@@ -57,8 +57,37 @@ const removeComment = () => {
 }
 
 export const doubanRun = (): number => {
+  // window.addEventListener('message', function(event) {
+  //   if (event.origin === 'http://new.xianbao.fun') {
+  //     const data = event.data.data;
+  //     // 处理传递的数据
+  //     alert(JSON.stringify(data))
+  //     console.log('postmessage数据',event,data);
+  //   }
+  // })
+  const searchParams = new URLSearchParams(window.location.search);
+  const qaData = searchParams.get('qa');
+  if (qaData) {
+    const qaList = JSON.parse(qaData)
+    setTimeout(() => {
+      document.querySelectorAll('.question-content').forEach((item,index) => {
+        if(qaList[index]) {
+          item.innerHTML = qaList[index].answer
+        }
+      })
+    }, 600);
+  }
+  
   fixPhone()
   removeAd()
   const count = removeComment()
+
+  setTimeout(() => {
+    const openAppDiv = document.createElement('div').attachShadow({ mode: 'open' });
+
+    openAppDiv.innerHTML = `<a target="_blank" href="https://www.douban.com/doubanapp/dispatch?uri=${encodeURIComponent(location.pathname)}"><button class="fixed bottom-24 right-2 btn btn-success">打开豆瓣App</button></a>`
+    document.body.append(openAppDiv); // 处理完shadowdom才能append
+  }, 600);
+
   return count
 }
