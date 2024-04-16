@@ -5,7 +5,9 @@
 :root {
   box-sizing: border-box;
   background-color: unset;
-  color-scheme: auto;
+  /* color-scheme: 'auto'; */
+  color-scheme: unset;
+  color: unset;
 }
 
 .article-list .title a{

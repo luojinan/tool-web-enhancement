@@ -1,5 +1,5 @@
 import { filterCommentText } from "./const";
-import { removeDomByList } from "./utils";
+import { copyToClipboard, removeDomByList, runToast } from "./utils";
 
 const removeAd = () => {
   const contentDiv = document.getElementById('content');
@@ -56,6 +56,24 @@ const removeComment = () => {
   return count
 }
 
+const setOpenDoubanApp = () => {
+  setTimeout(() => {
+    const openAppDiv = document.createElement('div').attachShadow({ mode: 'open' });
+    openAppDiv.innerHTML = '<button id="my-opendouban" class="fixed bottom-24 right-2 btn btn-success">打开豆瓣App</button></a>'
+    document.body.append(openAppDiv); // 处理完shadowdom才能append
+
+    const opendoubanDom = document.querySelector('#my-opendouban');
+
+    // 添加点击事件监听器
+    opendoubanDom?.addEventListener('click', function () {
+      const douappUrl = `https://www.douban.com/doubanapp/dispatch?uri=${encodeURIComponent(location.pathname)}`
+      copyToClipboard(douappUrl)
+
+      runToast('😅 复制成功，请使用其他浏览器粘贴打开')
+    });
+  }, 600);
+}
+
 export const doubanRun = (): number => {
   // window.addEventListener('message', function(event) {
   //   if (event.origin === 'http://new.xianbao.fun') {
@@ -70,24 +88,18 @@ export const doubanRun = (): number => {
   if (qaData) {
     const qaList = JSON.parse(qaData)
     setTimeout(() => {
-      document.querySelectorAll('.question-content').forEach((item,index) => {
-        if(qaList[index]) {
+      document.querySelectorAll('.question-content').forEach((item, index) => {
+        if (qaList[index]) {
           item.innerHTML = qaList[index].answer
         }
       })
     }, 600);
   }
-  
+
   fixPhone()
   removeAd()
   const count = removeComment()
-
-  setTimeout(() => {
-    const openAppDiv = document.createElement('div').attachShadow({ mode: 'open' });
-
-    openAppDiv.innerHTML = `<a target="_blank" href="https://www.douban.com/doubanapp/dispatch?uri=${encodeURIComponent(location.pathname)}"><button class="fixed bottom-24 right-2 btn btn-success">打开豆瓣App</button></a>`
-    document.body.append(openAppDiv); // 处理完shadowdom才能append
-  }, 600);
+  setOpenDoubanApp()
 
   return count
 }

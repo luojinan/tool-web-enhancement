@@ -8,3 +8,26 @@ export function removeDomByList(list: string[]) {
     document.querySelectorAll(item)?.forEach(item=>item.remove())
   });
 };
+
+// 使用ts实现复制到粘贴板功能
+export function copyToClipboard(text: string) {
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  document.body.appendChild(textarea);
+  textarea.select();
+  document.execCommand('copy');
+  document.body.removeChild(textarea);
+}
+
+export function runToast(text: string) {
+  const toastDom = document.querySelector('#my-toast') as HTMLElement
+  if (toastDom) {
+    toastDom.style.display = 'block';
+    const toastMsgDom =  document.querySelector('#my-toast .alert span') as HTMLElement
+    toastMsgDom.innerText = text
+
+    setTimeout(() => {
+      toastDom.style.display = 'none';
+    }, 3000);
+  }
+}
